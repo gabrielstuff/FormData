@@ -54,576 +54,686 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
-	  if (true) {
-	    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [module, exports, __webpack_require__(1), __webpack_require__(9), __webpack_require__(55), __webpack_require__(90), __webpack_require__(59), __webpack_require__(64), __webpack_require__(67), __webpack_require__(68), __webpack_require__(72)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	  } else if (typeof exports !== "undefined") {
-	    factory(module, exports, require('babel-runtime/core-js/symbol/to-string-tag'), require('babel-runtime/core-js/symbol/iterator'), require('babel-runtime/regenerator'), require('babel-runtime/helpers/slicedToArray'), require('babel-runtime/core-js/get-iterator'), require('babel-runtime/core-js/object/create'), require('babel-runtime/helpers/classCallCheck'), require('babel-runtime/helpers/createClass'), require('babel-runtime/core-js/weak-map'));
-	  } else {
-	    var mod = {
-	      exports: {}
-	    };
-	    factory(mod, mod.exports, global.toStringTag, global.iterator, global.regenerator, global.slicedToArray, global.getIterator, global.create, global.classCallCheck, global.createClass, global.weakMap);
-	    global.formdataumd = mod.exports;
-	  }
-	})(this, function (module, exports, _toStringTag, _iterator10, _regenerator, _slicedToArray2, _getIterator2, _create, _classCallCheck2, _createClass2, _weakMap) {
-	  'use strict';
+	'use strict';
 	
-	  Object.defineProperty(exports, "__esModule", {
-	    value: true
-	  });
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
 	
-	  var _toStringTag2 = _interopRequireDefault(_toStringTag);
+	var _toStringTag = __webpack_require__(1);
 	
-	  var _iterator11 = _interopRequireDefault(_iterator10);
+	var _toStringTag2 = _interopRequireDefault(_toStringTag);
 	
-	  var _regenerator2 = _interopRequireDefault(_regenerator);
+	var _iterator10 = __webpack_require__(9);
 	
-	  var _slicedToArray3 = _interopRequireDefault(_slicedToArray2);
+	var _iterator11 = _interopRequireDefault(_iterator10);
 	
-	  var _getIterator3 = _interopRequireDefault(_getIterator2);
+	var _regenerator = __webpack_require__(55);
 	
-	  var _create2 = _interopRequireDefault(_create);
+	var _regenerator2 = _interopRequireDefault(_regenerator);
 	
-	  var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+	var _slicedToArray2 = __webpack_require__(59);
 	
-	  var _createClass3 = _interopRequireDefault(_createClass2);
+	var _slicedToArray3 = _interopRequireDefault(_slicedToArray2);
 	
-	  var _weakMap2 = _interopRequireDefault(_weakMap);
+	var _getIterator2 = __webpack_require__(64);
 	
-	  function _interopRequireDefault(obj) {
-	    return obj && obj.__esModule ? obj : {
-	      default: obj
-	    };
-	  }
+	var _getIterator3 = _interopRequireDefault(_getIterator2);
 	
-	  var map = new _weakMap2.default();
-	  var wm = function wm(o) {
-	    return map.get(o);
-	  };
+	var _create = __webpack_require__(68);
+	
+	var _create2 = _interopRequireDefault(_create);
+	
+	var _classCallCheck2 = __webpack_require__(71);
+	
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+	
+	var _createClass2 = __webpack_require__(72);
+	
+	var _createClass3 = _interopRequireDefault(_createClass2);
+	
+	var _weakMap = __webpack_require__(76);
+	
+	var _weakMap2 = _interopRequireDefault(_weakMap);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var map = new _weakMap2.default();
+	var wm = function wm(o) {
+	  return map.get(o);
+	};
+	
+	/**
+	 * @implements {Iterable}
+	 */
+	
+	var FormDataPolyfill = function () {
 	
 	  /**
-	   * @implements {Iterable}
+	   * FormData class
+	   *
+	   * @param {HTMLElement=} form
+	   */
+	  function FormDataPolyfill(form) {
+	    (0, _classCallCheck3.default)(this, FormDataPolyfill);
+	
+	    map.set(this, (0, _create2.default)(null));
+	
+	    if (!form) return this;
+	
+	    var _iteratorNormalCompletion = true;
+	    var _didIteratorError = false;
+	    var _iteratorError = undefined;
+	
+	    try {
+	      for (var _iterator = (0, _getIterator3.default)(form.elements), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+	        var _step$value = _step.value,
+	            name = _step$value.name,
+	            type = _step$value.type,
+	            value = _step$value.value,
+	            files = _step$value.files,
+	            checked = _step$value.checked,
+	            selectedOptions = _step$value.selectedOptions;
+	
+	        if (!name) continue;
+	
+	        if (type === 'file') {
+	          var _iteratorNormalCompletion2 = true;
+	          var _didIteratorError2 = false;
+	          var _iteratorError2 = undefined;
+	
+	          try {
+	            for (var _iterator2 = (0, _getIterator3.default)(files), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+	              var _file = _step2.value;
+	
+	              this.append(name, _file);
+	            }
+	          } catch (err) {
+	            _didIteratorError2 = true;
+	            _iteratorError2 = err;
+	          } finally {
+	            try {
+	              if (!_iteratorNormalCompletion2 && _iterator2.return) {
+	                _iterator2.return();
+	              }
+	            } finally {
+	              if (_didIteratorError2) {
+	                throw _iteratorError2;
+	              }
+	            }
+	          }
+	        } else if (type === 'select-multiple' || type === 'select-one') {
+	          var _iteratorNormalCompletion3 = true;
+	          var _didIteratorError3 = false;
+	          var _iteratorError3 = undefined;
+	
+	          try {
+	            for (var _iterator3 = (0, _getIterator3.default)(selectedOptions), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+	              var _elm = _step3.value;
+	
+	              this.append(name, _elm.value);
+	            }
+	          } catch (err) {
+	            _didIteratorError3 = true;
+	            _iteratorError3 = err;
+	          } finally {
+	            try {
+	              if (!_iteratorNormalCompletion3 && _iterator3.return) {
+	                _iterator3.return();
+	              }
+	            } finally {
+	              if (_didIteratorError3) {
+	                throw _iteratorError3;
+	              }
+	            }
+	          }
+	        } else if (type === 'checkbox' && checked) this.append(name, value);else this.append(name, value);
+	      }
+	    } catch (err) {
+	      _didIteratorError = true;
+	      _iteratorError = err;
+	    } finally {
+	      try {
+	        if (!_iteratorNormalCompletion && _iterator.return) {
+	          _iterator.return();
+	        }
+	      } finally {
+	        if (_didIteratorError) {
+	          throw _iteratorError;
+	        }
+	      }
+	    }
+	  }
+	
+	  /**
+	   * Append a field
+	   *
+	   * @param   {String}           name      field name
+	   * @param   {String|Blob|File} value     string / blob / file
+	   * @param   {String=}          filename  filename to use with blob
+	   * @return  {Undefined}
 	   */
 	
-	  var FormDataPolyfill = function () {
+	
+	  (0, _createClass3.default)(FormDataPolyfill, [{
+	    key: 'append',
+	    value: function append(name, value, filename) {
+	      var map = wm(this);
+	      name += '';
+	
+	      if (!map[name]) map[name] = [];
+	
+	      map[name].push([value, filename]);
+	    }
 	
 	    /**
-	     * FormData class
+	     * Delete all fields values given name
 	     *
-	     * @param {HTMLElement=} form
+	     * @param   {String}  name  Field name
+	     * @return  {Undefined}
 	     */
-	    function FormDataPolyfill(form) {
-	      (0, _classCallCheck3.default)(this, FormDataPolyfill);
 	
-	      map.set(this, (0, _create2.default)(null));
+	  }, {
+	    key: 'delete',
+	    value: function _delete(name) {
+	      delete wm(this)[name += ''];
+	    }
 	
-	      if (!form) return this;
+	    /**
+	     * Iterate over all fields as [name, value]
+	     *
+	     * @return {Iterator}
+	     */
 	
-	      var _iteratorNormalCompletion = true;
-	      var _didIteratorError = false;
-	      var _iteratorError = undefined;
+	  }, {
+	    key: 'entries',
+	    value: _regenerator2.default.mark(function entries() {
+	      var map, opts, name, _iteratorNormalCompletion4, _didIteratorError4, _iteratorError4, _iterator4, _step4, _step4$value, value, filename;
+	
+	      return _regenerator2.default.wrap(function entries$(_context) {
+	        while (1) {
+	          switch (_context.prev = _context.next) {
+	            case 0:
+	              map = wm(this);
+	              opts = {};
+	              _context.t0 = _regenerator2.default.keys(map);
+	
+	            case 3:
+	              if ((_context.t1 = _context.t0()).done) {
+	                _context.next = 35;
+	                break;
+	              }
+	
+	              name = _context.t1.value;
+	              _iteratorNormalCompletion4 = true;
+	              _didIteratorError4 = false;
+	              _iteratorError4 = undefined;
+	              _context.prev = 8;
+	              _iterator4 = (0, _getIterator3.default)(map[name]);
+	
+	            case 10:
+	              if (_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done) {
+	                _context.next = 19;
+	                break;
+	              }
+	
+	              _step4$value = (0, _slicedToArray3.default)(_step4.value, 2), value = _step4$value[0], filename = _step4$value[1];
+	
+	              if (value instanceof File) {
+	                filename = filename || value.name;
+	                opts.type = value.type;
+	                opts.lastModified = value.lastModified;
+	              }
+	
+	              if (value instanceof Blob) {
+	                value = new File([value], filename === undefined ? 'blob' : filename + '', opts);
+	              }
+	
+	              _context.next = 16;
+	              return [name, value];
+	
+	            case 16:
+	              _iteratorNormalCompletion4 = true;
+	              _context.next = 10;
+	              break;
+	
+	            case 19:
+	              _context.next = 25;
+	              break;
+	
+	            case 21:
+	              _context.prev = 21;
+	              _context.t2 = _context['catch'](8);
+	              _didIteratorError4 = true;
+	              _iteratorError4 = _context.t2;
+	
+	            case 25:
+	              _context.prev = 25;
+	              _context.prev = 26;
+	
+	              if (!_iteratorNormalCompletion4 && _iterator4.return) {
+	                _iterator4.return();
+	              }
+	
+	            case 28:
+	              _context.prev = 28;
+	
+	              if (!_didIteratorError4) {
+	                _context.next = 31;
+	                break;
+	              }
+	
+	              throw _iteratorError4;
+	
+	            case 31:
+	              return _context.finish(28);
+	
+	            case 32:
+	              return _context.finish(25);
+	
+	            case 33:
+	              _context.next = 3;
+	              break;
+	
+	            case 35:
+	            case 'end':
+	              return _context.stop();
+	          }
+	        }
+	      }, entries, this, [[8, 21, 25, 33], [26,, 28, 32]]);
+	    })
+	
+	    /**
+	     * Iterate over all fields
+	     *
+	     * @param   {Function}  callback  Executed for each item with parameters (value, name, thisArg)
+	     * @param   {Object=}   thisArg   `this` context for callback function
+	     * @return  {Undefined}
+	     */
+	
+	  }, {
+	    key: 'forEach',
+	    value: function forEach(callback, thisArg) {
+	      var _iteratorNormalCompletion5 = true;
+	      var _didIteratorError5 = false;
+	      var _iteratorError5 = undefined;
 	
 	      try {
-	        for (var _iterator = (0, _getIterator3.default)(form.elements), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-	          var _step$value = _step.value,
-	              name = _step$value.name,
-	              type = _step$value.type,
-	              value = _step$value.value,
-	              files = _step$value.files,
-	              checked = _step$value.checked,
-	              selectedOptions = _step$value.selectedOptions;
+	        for (var _iterator5 = (0, _getIterator3.default)(this), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+	          var _step5$value = (0, _slicedToArray3.default)(_step5.value, 2),
+	              name = _step5$value[0],
+	              value = _step5$value[1];
 	
-	          if (!name) continue;
-	
-	          if (type === 'file') {
-	            var _iteratorNormalCompletion2 = true;
-	            var _didIteratorError2 = false;
-	            var _iteratorError2 = undefined;
-	
-	            try {
-	              for (var _iterator2 = (0, _getIterator3.default)(files), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-	                var _file = _step2.value;
-	
-	                this.append(name, _file);
-	              }
-	            } catch (err) {
-	              _didIteratorError2 = true;
-	              _iteratorError2 = err;
-	            } finally {
-	              try {
-	                if (!_iteratorNormalCompletion2 && _iterator2.return) {
-	                  _iterator2.return();
-	                }
-	              } finally {
-	                if (_didIteratorError2) {
-	                  throw _iteratorError2;
-	                }
-	              }
-	            }
-	          } else if (type === 'select-multiple' || type === 'select-one') {
-	            var _iteratorNormalCompletion3 = true;
-	            var _didIteratorError3 = false;
-	            var _iteratorError3 = undefined;
-	
-	            try {
-	              for (var _iterator3 = (0, _getIterator3.default)(selectedOptions), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-	                var _elm = _step3.value;
-	
-	                this.append(name, _elm.value);
-	              }
-	            } catch (err) {
-	              _didIteratorError3 = true;
-	              _iteratorError3 = err;
-	            } finally {
-	              try {
-	                if (!_iteratorNormalCompletion3 && _iterator3.return) {
-	                  _iterator3.return();
-	                }
-	              } finally {
-	                if (_didIteratorError3) {
-	                  throw _iteratorError3;
-	                }
-	              }
-	            }
-	          } else if (type === 'checkbox' && checked) this.append(name, value);else this.append(name, value);
+	          callback.call(thisArg, value, name, this);
 	        }
 	      } catch (err) {
-	        _didIteratorError = true;
-	        _iteratorError = err;
+	        _didIteratorError5 = true;
+	        _iteratorError5 = err;
 	      } finally {
 	        try {
-	          if (!_iteratorNormalCompletion && _iterator.return) {
-	            _iterator.return();
+	          if (!_iteratorNormalCompletion5 && _iterator5.return) {
+	            _iterator5.return();
 	          }
 	        } finally {
-	          if (_didIteratorError) {
-	            throw _iteratorError;
+	          if (_didIteratorError5) {
+	            throw _iteratorError5;
 	          }
 	        }
 	      }
 	    }
 	
 	    /**
-	     * Append a field
+	     * Return first field value given name
 	     *
-	     * @param   {String}           name      field name
-	     * @param   {String|Blob|File} value     string / blob / file
-	     * @param   {String=}          filename  filename to use with blob
+	     * @param   {String}  name  Field name
+	     * @return  {String|File}     value Fields value
+	     */
+	
+	  }, {
+	    key: 'get',
+	    value: function get(name) {
+	      var map = wm(this);
+	      name += '';
+	
+	      return map[name] ? map[name][0] : null;
+	    }
+	
+	    /**
+	     * Return all fields values given name
+	     *
+	     * @param   {String}  name           Fields name
+	     * @return  {Array}   [name, value]
+	     */
+	
+	  }, {
+	    key: 'getAll',
+	    value: function getAll(name) {
+	      return (wm(this)[name += ''] || []).concat();
+	    }
+	
+	    /**
+	     * Check for field name existence
+	     *
+	     * @param   {String}   name  Field name
+	     * @return  {boolean}
+	     */
+	
+	  }, {
+	    key: 'has',
+	    value: function has(name) {
+	      return name + '' in wm(this);
+	    }
+	
+	    /**
+	     * Iterate over all fields name
+	     *
+	     * @return {Iterator}
+	     */
+	
+	  }, {
+	    key: 'keys',
+	    value: _regenerator2.default.mark(function keys() {
+	      var _iteratorNormalCompletion6, _didIteratorError6, _iteratorError6, _iterator6, _step6, _step6$value, name;
+	
+	      return _regenerator2.default.wrap(function keys$(_context2) {
+	        while (1) {
+	          switch (_context2.prev = _context2.next) {
+	            case 0:
+	              _iteratorNormalCompletion6 = true;
+	              _didIteratorError6 = false;
+	              _iteratorError6 = undefined;
+	              _context2.prev = 3;
+	              _iterator6 = (0, _getIterator3.default)(this);
+	
+	            case 5:
+	              if (_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done) {
+	                _context2.next = 12;
+	                break;
+	              }
+	
+	              _step6$value = (0, _slicedToArray3.default)(_step6.value, 1), name = _step6$value[0];
+	              _context2.next = 9;
+	              return name;
+	
+	            case 9:
+	              _iteratorNormalCompletion6 = true;
+	              _context2.next = 5;
+	              break;
+	
+	            case 12:
+	              _context2.next = 18;
+	              break;
+	
+	            case 14:
+	              _context2.prev = 14;
+	              _context2.t0 = _context2['catch'](3);
+	              _didIteratorError6 = true;
+	              _iteratorError6 = _context2.t0;
+	
+	            case 18:
+	              _context2.prev = 18;
+	              _context2.prev = 19;
+	
+	              if (!_iteratorNormalCompletion6 && _iterator6.return) {
+	                _iterator6.return();
+	              }
+	
+	            case 21:
+	              _context2.prev = 21;
+	
+	              if (!_didIteratorError6) {
+	                _context2.next = 24;
+	                break;
+	              }
+	
+	              throw _iteratorError6;
+	
+	            case 24:
+	              return _context2.finish(21);
+	
+	            case 25:
+	              return _context2.finish(18);
+	
+	            case 26:
+	            case 'end':
+	              return _context2.stop();
+	          }
+	        }
+	      }, keys, this, [[3, 14, 18, 26], [19,, 21, 25]]);
+	    })
+	
+	    /**
+	     * Overwrite all values given name
+	     *
+	     * @param   {String}    name      Filed name
+	     * @param   {String}    value     Field value
+	     * @param   {String=}   filename  Filename (optional)
 	     * @return  {Undefined}
 	     */
 	
+	  }, {
+	    key: 'set',
+	    value: function set(name, value, filename) {
+	      wm(this)[name + ''] = [[value, filename]];
+	    }
 	
-	    (0, _createClass3.default)(FormDataPolyfill, [{
-	      key: 'append',
-	      value: function append(name, value, filename) {
-	        var map = wm(this);
-	        name += '';
+	    /**
+	     * Iterate over all fields
+	     *
+	     * @return {Iterator}
+	     */
 	
-	        if (!map[name]) map[name] = [];
+	  }, {
+	    key: 'values',
+	    value: _regenerator2.default.mark(function values() {
+	      var _iteratorNormalCompletion7, _didIteratorError7, _iteratorError7, _iterator7, _step7, _step7$value, name, value;
 	
-	        map[name].push([value, filename]);
-	      }
-	    }, {
-	      key: 'delete',
-	      value: function _delete(name) {
-	        delete wm(this)[name += ''];
-	      }
-	    }, {
-	      key: 'entries',
-	      value: _regenerator2.default.mark(function entries() {
-	        var map, opts, name, _iteratorNormalCompletion4, _didIteratorError4, _iteratorError4, _iterator4, _step4, _step4$value, value, filename;
+	      return _regenerator2.default.wrap(function values$(_context3) {
+	        while (1) {
+	          switch (_context3.prev = _context3.next) {
+	            case 0:
+	              _iteratorNormalCompletion7 = true;
+	              _didIteratorError7 = false;
+	              _iteratorError7 = undefined;
+	              _context3.prev = 3;
+	              _iterator7 = (0, _getIterator3.default)(this);
 	
-	        return _regenerator2.default.wrap(function entries$(_context) {
-	          while (1) {
-	            switch (_context.prev = _context.next) {
-	              case 0:
-	                map = wm(this);
-	                opts = {};
-	                _context.t0 = _regenerator2.default.keys(map);
-	
-	              case 3:
-	                if ((_context.t1 = _context.t0()).done) {
-	                  _context.next = 35;
-	                  break;
-	                }
-	
-	                name = _context.t1.value;
-	                _iteratorNormalCompletion4 = true;
-	                _didIteratorError4 = false;
-	                _iteratorError4 = undefined;
-	                _context.prev = 8;
-	                _iterator4 = (0, _getIterator3.default)(map[name]);
-	
-	              case 10:
-	                if (_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done) {
-	                  _context.next = 19;
-	                  break;
-	                }
-	
-	                _step4$value = (0, _slicedToArray3.default)(_step4.value, 2), value = _step4$value[0], filename = _step4$value[1];
-	
-	                if (value instanceof File) {
-	                  filename = filename || value.name;
-	                  opts.type = value.type;
-	                  opts.lastModified = value.lastModified;
-	                }
-	
-	                if (value instanceof Blob) {
-	                  value = new File([value], filename === undefined ? 'blob' : filename + '', opts);
-	                }
-	
-	                _context.next = 16;
-	                return [name, value];
-	
-	              case 16:
-	                _iteratorNormalCompletion4 = true;
-	                _context.next = 10;
+	            case 5:
+	              if (_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done) {
+	                _context3.next = 12;
 	                break;
+	              }
 	
-	              case 19:
-	                _context.next = 25;
+	              _step7$value = (0, _slicedToArray3.default)(_step7.value, 2), name = _step7$value[0], value = _step7$value[1];
+	              _context3.next = 9;
+	              return value;
+	
+	            case 9:
+	              _iteratorNormalCompletion7 = true;
+	              _context3.next = 5;
+	              break;
+	
+	            case 12:
+	              _context3.next = 18;
+	              break;
+	
+	            case 14:
+	              _context3.prev = 14;
+	              _context3.t0 = _context3['catch'](3);
+	              _didIteratorError7 = true;
+	              _iteratorError7 = _context3.t0;
+	
+	            case 18:
+	              _context3.prev = 18;
+	              _context3.prev = 19;
+	
+	              if (!_iteratorNormalCompletion7 && _iterator7.return) {
+	                _iterator7.return();
+	              }
+	
+	            case 21:
+	              _context3.prev = 21;
+	
+	              if (!_didIteratorError7) {
+	                _context3.next = 24;
 	                break;
+	              }
 	
-	              case 21:
-	                _context.prev = 21;
-	                _context.t2 = _context['catch'](8);
-	                _didIteratorError4 = true;
-	                _iteratorError4 = _context.t2;
+	              throw _iteratorError7;
 	
-	              case 25:
-	                _context.prev = 25;
-	                _context.prev = 26;
+	            case 24:
+	              return _context3.finish(21);
 	
-	                if (!_iteratorNormalCompletion4 && _iterator4.return) {
-	                  _iterator4.return();
-	                }
+	            case 25:
+	              return _context3.finish(18);
 	
-	              case 28:
-	                _context.prev = 28;
-	
-	                if (!_didIteratorError4) {
-	                  _context.next = 31;
-	                  break;
-	                }
-	
-	                throw _iteratorError4;
-	
-	              case 31:
-	                return _context.finish(28);
-	
-	              case 32:
-	                return _context.finish(25);
-	
-	              case 33:
-	                _context.next = 3;
-	                break;
-	
-	              case 35:
-	              case 'end':
-	                return _context.stop();
-	            }
+	            case 26:
+	            case 'end':
+	              return _context3.stop();
 	          }
-	        }, entries, this, [[8, 21, 25, 33], [26,, 28, 32]]);
-	      })
-	    }, {
-	      key: 'forEach',
-	      value: function forEach(callback, thisArg) {
-	        var _iteratorNormalCompletion5 = true;
-	        var _didIteratorError5 = false;
-	        var _iteratorError5 = undefined;
+	        }
+	      }, values, this, [[3, 14, 18, 26], [19,, 21, 25]]);
+	    })
 	
+	    /**
+	     * Non standard but it has been proposed: https://github.com/w3c/FileAPI/issues/40
+	     *
+	     * @return {ReadableStream}
+	     */
+	
+	  }, {
+	    key: 'stream',
+	    value: function stream() {
+	      try {
+	        return this._blob().stream();
+	      } catch (e) {
+	        throw new Error('Include https://github.com/jimmywarting/Screw-FileReader for streaming support');
+	      }
+	    }
+	
+	    /**
+	     * Return a native (perhaps degraded) FormData with only a `append` method
+	     * Can throw if it's not supported
+	     *
+	     * @return {FormData}
+	     */
+	
+	  }, {
+	    key: '_asNative',
+	    value: function _asNative() {
+	      var fd = new FormData();
+	
+	      var _iteratorNormalCompletion8 = true;
+	      var _didIteratorError8 = false;
+	      var _iteratorError8 = undefined;
+	
+	      try {
+	        for (var _iterator8 = (0, _getIterator3.default)(this), _step8; !(_iteratorNormalCompletion8 = (_step8 = _iterator8.next()).done); _iteratorNormalCompletion8 = true) {
+	          var _step8$value = (0, _slicedToArray3.default)(_step8.value, 2),
+	              name = _step8$value[0],
+	              value = _step8$value[1];
+	
+	          fd.append(name, value);
+	        }
+	      } catch (err) {
+	        _didIteratorError8 = true;
+	        _iteratorError8 = err;
+	      } finally {
 	        try {
-	          for (var _iterator5 = (0, _getIterator3.default)(this), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
-	            var _step5$value = (0, _slicedToArray3.default)(_step5.value, 2),
-	                name = _step5$value[0],
-	                value = _step5$value[1];
-	
-	            callback.call(thisArg, value, name, this);
+	          if (!_iteratorNormalCompletion8 && _iterator8.return) {
+	            _iterator8.return();
 	          }
-	        } catch (err) {
-	          _didIteratorError5 = true;
-	          _iteratorError5 = err;
 	        } finally {
-	          try {
-	            if (!_iteratorNormalCompletion5 && _iterator5.return) {
-	              _iterator5.return();
-	            }
-	          } finally {
-	            if (_didIteratorError5) {
-	              throw _iteratorError5;
-	            }
+	          if (_didIteratorError8) {
+	            throw _iteratorError8;
 	          }
 	        }
 	      }
-	    }, {
-	      key: 'get',
-	      value: function get(name) {
-	        var map = wm(this);
-	        name += '';
 	
-	        return map[name] ? map[name][0] : null;
-	      }
-	    }, {
-	      key: 'getAll',
-	      value: function getAll(name) {
-	        return (wm(this)[name += ''] || []).concat();
-	      }
-	    }, {
-	      key: 'has',
-	      value: function has(name) {
-	        return name + '' in wm(this);
-	      }
-	    }, {
-	      key: 'keys',
-	      value: _regenerator2.default.mark(function keys() {
-	        var _iteratorNormalCompletion6, _didIteratorError6, _iteratorError6, _iterator6, _step6, _step6$value, name;
+	      return fd;
+	    }
 	
-	        return _regenerator2.default.wrap(function keys$(_context2) {
-	          while (1) {
-	            switch (_context2.prev = _context2.next) {
-	              case 0:
-	                _iteratorNormalCompletion6 = true;
-	                _didIteratorError6 = false;
-	                _iteratorError6 = undefined;
-	                _context2.prev = 3;
-	                _iterator6 = (0, _getIterator3.default)(this);
+	    /**
+	     * [_blob description]
+	     *
+	     * @return {Blob} [description]
+	     */
 	
-	              case 5:
-	                if (_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done) {
-	                  _context2.next = 12;
-	                  break;
-	                }
+	  }, {
+	    key: '_blob',
+	    value: function _blob() {
+	      var boundary = "----FormDataPolyfill" + Math.random();
+	      var chunks = [];
 	
-	                _step6$value = (0, _slicedToArray3.default)(_step6.value, 1), name = _step6$value[0];
-	                _context2.next = 9;
-	                return name;
+	      var _iteratorNormalCompletion9 = true;
+	      var _didIteratorError9 = false;
+	      var _iteratorError9 = undefined;
 	
-	              case 9:
-	                _iteratorNormalCompletion6 = true;
-	                _context2.next = 5;
-	                break;
+	      try {
+	        for (var _iterator9 = (0, _getIterator3.default)(this), _step9; !(_iteratorNormalCompletion9 = (_step9 = _iterator9.next()).done); _iteratorNormalCompletion9 = true) {
+	          var _step9$value = (0, _slicedToArray3.default)(_step9.value, 2),
+	              name = _step9$value[0],
+	              value = _step9$value[1];
 	
-	              case 12:
-	                _context2.next = 18;
-	                break;
+	          chunks.push('--' + boundary + '\r\n');
 	
-	              case 14:
-	                _context2.prev = 14;
-	                _context2.t0 = _context2['catch'](3);
-	                _didIteratorError6 = true;
-	                _iteratorError6 = _context2.t0;
-	
-	              case 18:
-	                _context2.prev = 18;
-	                _context2.prev = 19;
-	
-	                if (!_iteratorNormalCompletion6 && _iterator6.return) {
-	                  _iterator6.return();
-	                }
-	
-	              case 21:
-	                _context2.prev = 21;
-	
-	                if (!_didIteratorError6) {
-	                  _context2.next = 24;
-	                  break;
-	                }
-	
-	                throw _iteratorError6;
-	
-	              case 24:
-	                return _context2.finish(21);
-	
-	              case 25:
-	                return _context2.finish(18);
-	
-	              case 26:
-	              case 'end':
-	                return _context2.stop();
-	            }
+	          if (value instanceof File) {
+	            chunks.push('Content-Disposition: form-data; name="' + name + '"; filename="' + value.name + '"\r\n', 'Content-Type: ' + value.type + '\r\n\r\n', value, '\r\n');
+	          } else {
+	            chunks.push('Content-Disposition: form-data; name="' + name + '"\r\n\r\n' + value + '\r\n');
 	          }
-	        }, keys, this, [[3, 14, 18, 26], [19,, 21, 25]]);
-	      })
-	    }, {
-	      key: 'set',
-	      value: function set(name, value, filename) {
-	        wm(this)[name + ''] = [[value, filename]];
-	      }
-	    }, {
-	      key: 'values',
-	      value: _regenerator2.default.mark(function values() {
-	        var _iteratorNormalCompletion7, _didIteratorError7, _iteratorError7, _iterator7, _step7, _step7$value, name, value;
-	
-	        return _regenerator2.default.wrap(function values$(_context3) {
-	          while (1) {
-	            switch (_context3.prev = _context3.next) {
-	              case 0:
-	                _iteratorNormalCompletion7 = true;
-	                _didIteratorError7 = false;
-	                _iteratorError7 = undefined;
-	                _context3.prev = 3;
-	                _iterator7 = (0, _getIterator3.default)(this);
-	
-	              case 5:
-	                if (_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done) {
-	                  _context3.next = 12;
-	                  break;
-	                }
-	
-	                _step7$value = (0, _slicedToArray3.default)(_step7.value, 2), name = _step7$value[0], value = _step7$value[1];
-	                _context3.next = 9;
-	                return value;
-	
-	              case 9:
-	                _iteratorNormalCompletion7 = true;
-	                _context3.next = 5;
-	                break;
-	
-	              case 12:
-	                _context3.next = 18;
-	                break;
-	
-	              case 14:
-	                _context3.prev = 14;
-	                _context3.t0 = _context3['catch'](3);
-	                _didIteratorError7 = true;
-	                _iteratorError7 = _context3.t0;
-	
-	              case 18:
-	                _context3.prev = 18;
-	                _context3.prev = 19;
-	
-	                if (!_iteratorNormalCompletion7 && _iterator7.return) {
-	                  _iterator7.return();
-	                }
-	
-	              case 21:
-	                _context3.prev = 21;
-	
-	                if (!_didIteratorError7) {
-	                  _context3.next = 24;
-	                  break;
-	                }
-	
-	                throw _iteratorError7;
-	
-	              case 24:
-	                return _context3.finish(21);
-	
-	              case 25:
-	                return _context3.finish(18);
-	
-	              case 26:
-	              case 'end':
-	                return _context3.stop();
-	            }
-	          }
-	        }, values, this, [[3, 14, 18, 26], [19,, 21, 25]]);
-	      })
-	    }, {
-	      key: 'stream',
-	      value: function stream() {
-	        try {
-	          return this._blob().stream();
-	        } catch (e) {
-	          throw new Error('Include https://github.com/jimmywarting/Screw-FileReader for streaming support');
 	        }
-	      }
-	    }, {
-	      key: '_asNative',
-	      value: function _asNative() {
-	        var fd = new FormData();
-	
-	        var _iteratorNormalCompletion8 = true;
-	        var _didIteratorError8 = false;
-	        var _iteratorError8 = undefined;
-	
+	      } catch (err) {
+	        _didIteratorError9 = true;
+	        _iteratorError9 = err;
+	      } finally {
 	        try {
-	          for (var _iterator8 = (0, _getIterator3.default)(this), _step8; !(_iteratorNormalCompletion8 = (_step8 = _iterator8.next()).done); _iteratorNormalCompletion8 = true) {
-	            var _step8$value = (0, _slicedToArray3.default)(_step8.value, 2),
-	                name = _step8$value[0],
-	                value = _step8$value[1];
-	
-	            fd.append(name, value);
+	          if (!_iteratorNormalCompletion9 && _iterator9.return) {
+	            _iterator9.return();
 	          }
-	        } catch (err) {
-	          _didIteratorError8 = true;
-	          _iteratorError8 = err;
 	        } finally {
-	          try {
-	            if (!_iteratorNormalCompletion8 && _iterator8.return) {
-	              _iterator8.return();
-	            }
-	          } finally {
-	            if (_didIteratorError8) {
-	              throw _iteratorError8;
-	            }
+	          if (_didIteratorError9) {
+	            throw _iteratorError9;
 	          }
 	        }
-	
-	        return fd;
 	      }
-	    }, {
-	      key: '_blob',
-	      value: function _blob() {
-	        var boundary = "----FormDataPolyfill" + Math.random();
-	        var chunks = [];
 	
-	        var _iteratorNormalCompletion9 = true;
-	        var _didIteratorError9 = false;
-	        var _iteratorError9 = undefined;
+	      chunks.push('--' + boundary + '--');
 	
-	        try {
-	          for (var _iterator9 = (0, _getIterator3.default)(this), _step9; !(_iteratorNormalCompletion9 = (_step9 = _iterator9.next()).done); _iteratorNormalCompletion9 = true) {
-	            var _step9$value = (0, _slicedToArray3.default)(_step9.value, 2),
-	                name = _step9$value[0],
-	                value = _step9$value[1];
+	      return new Blob(chunks, { type: 'multipart/form-data; boundary=' + boundary });
+	    }
 	
-	            chunks.push('--' + boundary + '\r\n');
+	    /**
+	     * The class itself is iterable
+	     * alias for formdata.entries()
+	     *
+	     * @return  {Iterator}
+	     */
 	
-	            if (value instanceof File) {
-	              chunks.push('Content-Disposition: form-data; name="' + name + '"; filename="' + value.name + '"\r\n', 'Content-Type: ' + value.type + '\r\n\r\n', value, '\r\n');
-	            } else {
-	              chunks.push('Content-Disposition: form-data; name="' + name + '"\r\n\r\n' + value + '\r\n');
-	            }
-	          }
-	        } catch (err) {
-	          _didIteratorError9 = true;
-	          _iteratorError9 = err;
-	        } finally {
-	          try {
-	            if (!_iteratorNormalCompletion9 && _iterator9.return) {
-	              _iterator9.return();
-	            }
-	          } finally {
-	            if (_didIteratorError9) {
-	              throw _iteratorError9;
-	            }
-	          }
-	        }
+	  }, {
+	    key: _iterator11.default,
+	    value: function value() {
+	      return this.entries();
+	    }
 	
-	        chunks.push('--' + boundary + '--');
+	    /**
+	     * Create the default string description.
+	     * It is accessed internally by the Object.prototype.toString().
+	     *
+	     * @return {String} FormData
+	     */
 	
-	        return new Blob(chunks, { type: 'multipart/form-data; boundary=' + boundary });
-	      }
-	    }, {
-	      key: _iterator11.default,
-	      value: function value() {
-	        return this.entries();
-	      }
-	    }, {
-	      key: _toStringTag2.default,
-	      get: function get() {
-	        return 'FormData';
-	      }
-	    }]);
-	    return FormDataPolyfill;
-	  }();
+	  }, {
+	    key: _toStringTag2.default,
+	    get: function get() {
+	      return 'FormData';
+	    }
+	  }]);
+	  return FormDataPolyfill;
+	}();
 	
-	  exports.default = FormDataPolyfill;
-	  module.exports = exports['default'];
-	});
+	exports.default = FormDataPolyfill;
+	module.exports = exports['default'];
 
 /***/ },
 /* 1 */
@@ -2365,27 +2475,71 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 59 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = { "default": __webpack_require__(60), __esModule: true };
+	"use strict";
+	
+	exports.__esModule = true;
+	
+	var _isIterable2 = __webpack_require__(60);
+	
+	var _isIterable3 = _interopRequireDefault(_isIterable2);
+	
+	var _getIterator2 = __webpack_require__(64);
+	
+	var _getIterator3 = _interopRequireDefault(_getIterator2);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = function () {
+	  function sliceIterator(arr, i) {
+	    var _arr = [];
+	    var _n = true;
+	    var _d = false;
+	    var _e = undefined;
+	
+	    try {
+	      for (var _i = (0, _getIterator3.default)(arr), _s; !(_n = (_s = _i.next()).done); _n = true) {
+	        _arr.push(_s.value);
+	
+	        if (i && _arr.length === i) break;
+	      }
+	    } catch (err) {
+	      _d = true;
+	      _e = err;
+	    } finally {
+	      try {
+	        if (!_n && _i["return"]) _i["return"]();
+	      } finally {
+	        if (_d) throw _e;
+	      }
+	    }
+	
+	    return _arr;
+	  }
+	
+	  return function (arr, i) {
+	    if (Array.isArray(arr)) {
+	      return arr;
+	    } else if ((0, _isIterable3.default)(Object(arr))) {
+	      return sliceIterator(arr, i);
+	    } else {
+	      throw new TypeError("Invalid attempt to destructure non-iterable instance");
+	    }
+	  };
+	}();
 
 /***/ },
 /* 60 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(51);
-	__webpack_require__(11);
-	module.exports = __webpack_require__(61);
+	module.exports = { "default": __webpack_require__(61), __esModule: true };
 
 /***/ },
 /* 61 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var anObject = __webpack_require__(23)
-	  , get      = __webpack_require__(62);
-	module.exports = __webpack_require__(18).getIterator = function(it){
-	  var iterFn = get(it);
-	  if(typeof iterFn != 'function')throw TypeError(it + ' is not iterable!');
-	  return anObject(iterFn.call(it));
-	};
+	__webpack_require__(51);
+	__webpack_require__(11);
+	module.exports = __webpack_require__(62);
 
 /***/ },
 /* 62 */
@@ -2394,10 +2548,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	var classof   = __webpack_require__(63)
 	  , ITERATOR  = __webpack_require__(5)('iterator')
 	  , Iterators = __webpack_require__(33);
-	module.exports = __webpack_require__(18).getIteratorMethod = function(it){
-	  if(it != undefined)return it[ITERATOR]
-	    || it['@@iterator']
-	    || Iterators[classof(it)];
+	module.exports = __webpack_require__(18).isIterable = function(it){
+	  var O = Object(it);
+	  return O[ITERATOR] !== undefined
+	    || '@@iterator' in O
+	    || Iterators.hasOwnProperty(classof(O));
 	};
 
 /***/ },
@@ -2438,14 +2593,53 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 65 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(66);
+	__webpack_require__(51);
+	__webpack_require__(11);
+	module.exports = __webpack_require__(66);
+
+/***/ },
+/* 66 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var anObject = __webpack_require__(23)
+	  , get      = __webpack_require__(67);
+	module.exports = __webpack_require__(18).getIterator = function(it){
+	  var iterFn = get(it);
+	  if(typeof iterFn != 'function')throw TypeError(it + ' is not iterable!');
+	  return anObject(iterFn.call(it));
+	};
+
+/***/ },
+/* 67 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var classof   = __webpack_require__(63)
+	  , ITERATOR  = __webpack_require__(5)('iterator')
+	  , Iterators = __webpack_require__(33);
+	module.exports = __webpack_require__(18).getIteratorMethod = function(it){
+	  if(it != undefined)return it[ITERATOR]
+	    || it['@@iterator']
+	    || Iterators[classof(it)];
+	};
+
+/***/ },
+/* 68 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = { "default": __webpack_require__(69), __esModule: true };
+
+/***/ },
+/* 69 */
+/***/ function(module, exports, __webpack_require__) {
+
+	__webpack_require__(70);
 	var $Object = __webpack_require__(18).Object;
 	module.exports = function create(P, D){
 	  return $Object.create(P, D);
 	};
 
 /***/ },
-/* 66 */
+/* 70 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var $export = __webpack_require__(17)
@@ -2453,7 +2647,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	$export($export.S, 'Object', {create: __webpack_require__(35)});
 
 /***/ },
-/* 67 */
+/* 71 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -2467,14 +2661,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 68 */
+/* 72 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
 	exports.__esModule = true;
 	
-	var _defineProperty = __webpack_require__(69);
+	var _defineProperty = __webpack_require__(73);
 	
 	var _defineProperty2 = _interopRequireDefault(_defineProperty);
 	
@@ -2499,23 +2693,23 @@ return /******/ (function(modules) { // webpackBootstrap
 	}();
 
 /***/ },
-/* 69 */
+/* 73 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = { "default": __webpack_require__(70), __esModule: true };
+	module.exports = { "default": __webpack_require__(74), __esModule: true };
 
 /***/ },
-/* 70 */
+/* 74 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(71);
+	__webpack_require__(75);
 	var $Object = __webpack_require__(18).Object;
 	module.exports = function defineProperty(it, key, desc){
 	  return $Object.defineProperty(it, key, desc);
 	};
 
 /***/ },
-/* 71 */
+/* 75 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var $export = __webpack_require__(17);
@@ -2523,30 +2717,30 @@ return /******/ (function(modules) { // webpackBootstrap
 	$export($export.S + $export.F * !__webpack_require__(26), 'Object', {defineProperty: __webpack_require__(22).f});
 
 /***/ },
-/* 72 */
+/* 76 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = { "default": __webpack_require__(73), __esModule: true };
+	module.exports = { "default": __webpack_require__(77), __esModule: true };
 
 /***/ },
-/* 73 */
+/* 77 */
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(3);
 	__webpack_require__(51);
-	__webpack_require__(74);
+	__webpack_require__(78);
 	module.exports = __webpack_require__(18).WeakMap;
 
 /***/ },
-/* 74 */
+/* 78 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	var each         = __webpack_require__(75)(0)
+	var each         = __webpack_require__(79)(0)
 	  , redefine     = __webpack_require__(31)
-	  , meta         = __webpack_require__(79)
-	  , assign       = __webpack_require__(80)
-	  , weak         = __webpack_require__(83)
+	  , meta         = __webpack_require__(83)
+	  , assign       = __webpack_require__(84)
+	  , weak         = __webpack_require__(87)
 	  , isObject     = __webpack_require__(24)
 	  , getWeak      = meta.getWeak
 	  , isExtensible = Object.isExtensible
@@ -2576,7 +2770,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 	
 	// 23.3 WeakMap Objects
-	var $WeakMap = module.exports = __webpack_require__(89)('WeakMap', wrapper, methods, weak, true, true);
+	var $WeakMap = module.exports = __webpack_require__(93)('WeakMap', wrapper, methods, weak, true, true);
 	
 	// IE11 WeakMap frozen keys fix
 	if(new $WeakMap().set((Object.freeze || Object)(tmp), 7).get(tmp) != 7){
@@ -2599,7 +2793,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 75 */
+/* 79 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 0 -> Array#forEach
@@ -2613,7 +2807,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  , IObject  = __webpack_require__(40)
 	  , toObject = __webpack_require__(50)
 	  , toLength = __webpack_require__(43)
-	  , asc      = __webpack_require__(76);
+	  , asc      = __webpack_require__(80);
 	module.exports = function(TYPE, $create){
 	  var IS_MAP        = TYPE == 1
 	    , IS_FILTER     = TYPE == 2
@@ -2648,22 +2842,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 76 */
+/* 80 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 9.4.2.3 ArraySpeciesCreate(originalArray, length)
-	var speciesConstructor = __webpack_require__(77);
+	var speciesConstructor = __webpack_require__(81);
 	
 	module.exports = function(original, length){
 	  return new (speciesConstructor(original))(length);
 	};
 
 /***/ },
-/* 77 */
+/* 81 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var isObject = __webpack_require__(24)
-	  , isArray  = __webpack_require__(78)
+	  , isArray  = __webpack_require__(82)
 	  , SPECIES  = __webpack_require__(5)('species');
 	
 	module.exports = function(original){
@@ -2680,7 +2874,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 78 */
+/* 82 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 7.2.2 IsArray(argument)
@@ -2690,7 +2884,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 79 */
+/* 83 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var META     = __webpack_require__(8)('meta')
@@ -2748,14 +2942,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 80 */
+/* 84 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	// 19.1.2.1 Object.assign(target, source, ...)
 	var getKeys  = __webpack_require__(37)
-	  , gOPS     = __webpack_require__(81)
-	  , pIE      = __webpack_require__(82)
+	  , gOPS     = __webpack_require__(85)
+	  , pIE      = __webpack_require__(86)
 	  , toObject = __webpack_require__(50)
 	  , IObject  = __webpack_require__(40)
 	  , $assign  = Object.assign;
@@ -2786,29 +2980,29 @@ return /******/ (function(modules) { // webpackBootstrap
 	} : $assign;
 
 /***/ },
-/* 81 */
+/* 85 */
 /***/ function(module, exports) {
 
 	exports.f = Object.getOwnPropertySymbols;
 
 /***/ },
-/* 82 */
+/* 86 */
 /***/ function(module, exports) {
 
 	exports.f = {}.propertyIsEnumerable;
 
 /***/ },
-/* 83 */
+/* 87 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
-	var redefineAll       = __webpack_require__(84)
-	  , getWeak           = __webpack_require__(79).getWeak
+	var redefineAll       = __webpack_require__(88)
+	  , getWeak           = __webpack_require__(83).getWeak
 	  , anObject          = __webpack_require__(23)
 	  , isObject          = __webpack_require__(24)
-	  , anInstance        = __webpack_require__(85)
-	  , forOf             = __webpack_require__(86)
-	  , createArrayMethod = __webpack_require__(75)
+	  , anInstance        = __webpack_require__(89)
+	  , forOf             = __webpack_require__(90)
+	  , createArrayMethod = __webpack_require__(79)
 	  , $has              = __webpack_require__(32)
 	  , arrayFind         = createArrayMethod(5)
 	  , arrayFindIndex    = createArrayMethod(6)
@@ -2886,7 +3080,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 84 */
+/* 88 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var hide = __webpack_require__(21);
@@ -2898,7 +3092,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 85 */
+/* 89 */
 /***/ function(module, exports) {
 
 	module.exports = function(it, Constructor, name, forbiddenField){
@@ -2908,15 +3102,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 86 */
+/* 90 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var ctx         = __webpack_require__(19)
-	  , call        = __webpack_require__(87)
-	  , isArrayIter = __webpack_require__(88)
+	  , call        = __webpack_require__(91)
+	  , isArrayIter = __webpack_require__(92)
 	  , anObject    = __webpack_require__(23)
 	  , toLength    = __webpack_require__(43)
-	  , getIterFn   = __webpack_require__(62)
+	  , getIterFn   = __webpack_require__(67)
 	  , BREAK       = {}
 	  , RETURN      = {};
 	var exports = module.exports = function(iterable, entries, fn, that, ITERATOR){
@@ -2938,7 +3132,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.RETURN = RETURN;
 
 /***/ },
-/* 87 */
+/* 91 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// call something on iterator step with safe closing on error
@@ -2955,7 +3149,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 88 */
+/* 92 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// check on default Array iterator
@@ -2968,22 +3162,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 89 */
+/* 93 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	var global         = __webpack_require__(7)
 	  , $export        = __webpack_require__(17)
-	  , meta           = __webpack_require__(79)
+	  , meta           = __webpack_require__(83)
 	  , fails          = __webpack_require__(27)
 	  , hide           = __webpack_require__(21)
-	  , redefineAll    = __webpack_require__(84)
-	  , forOf          = __webpack_require__(86)
-	  , anInstance     = __webpack_require__(85)
+	  , redefineAll    = __webpack_require__(88)
+	  , forOf          = __webpack_require__(90)
+	  , anInstance     = __webpack_require__(89)
 	  , isObject       = __webpack_require__(24)
 	  , setToStringTag = __webpack_require__(48)
 	  , dP             = __webpack_require__(22).f
-	  , each           = __webpack_require__(75)(0)
+	  , each           = __webpack_require__(79)(0)
 	  , DESCRIPTORS    = __webpack_require__(26);
 	
 	module.exports = function(NAME, wrapper, methods, common, IS_MAP, IS_WEAK){
@@ -3029,90 +3223,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	  if(!IS_WEAK)common.setStrong(C, NAME, IS_MAP);
 	
 	  return C;
-	};
-
-/***/ },
-/* 90 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	exports.__esModule = true;
-	
-	var _isIterable2 = __webpack_require__(91);
-	
-	var _isIterable3 = _interopRequireDefault(_isIterable2);
-	
-	var _getIterator2 = __webpack_require__(59);
-	
-	var _getIterator3 = _interopRequireDefault(_getIterator2);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	exports.default = function () {
-	  function sliceIterator(arr, i) {
-	    var _arr = [];
-	    var _n = true;
-	    var _d = false;
-	    var _e = undefined;
-	
-	    try {
-	      for (var _i = (0, _getIterator3.default)(arr), _s; !(_n = (_s = _i.next()).done); _n = true) {
-	        _arr.push(_s.value);
-	
-	        if (i && _arr.length === i) break;
-	      }
-	    } catch (err) {
-	      _d = true;
-	      _e = err;
-	    } finally {
-	      try {
-	        if (!_n && _i["return"]) _i["return"]();
-	      } finally {
-	        if (_d) throw _e;
-	      }
-	    }
-	
-	    return _arr;
-	  }
-	
-	  return function (arr, i) {
-	    if (Array.isArray(arr)) {
-	      return arr;
-	    } else if ((0, _isIterable3.default)(Object(arr))) {
-	      return sliceIterator(arr, i);
-	    } else {
-	      throw new TypeError("Invalid attempt to destructure non-iterable instance");
-	    }
-	  };
-	}();
-
-/***/ },
-/* 91 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = { "default": __webpack_require__(92), __esModule: true };
-
-/***/ },
-/* 92 */
-/***/ function(module, exports, __webpack_require__) {
-
-	__webpack_require__(51);
-	__webpack_require__(11);
-	module.exports = __webpack_require__(93);
-
-/***/ },
-/* 93 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var classof   = __webpack_require__(63)
-	  , ITERATOR  = __webpack_require__(5)('iterator')
-	  , Iterators = __webpack_require__(33);
-	module.exports = __webpack_require__(18).isIterable = function(it){
-	  var O = Object(it);
-	  return O[ITERATOR] !== undefined
-	    || '@@iterator' in O
-	    || Iterators.hasOwnProperty(classof(O));
 	};
 
 /***/ }
